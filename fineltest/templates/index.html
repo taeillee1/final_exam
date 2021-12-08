@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HOME NETWORK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> <!-- css 파일 지정-->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Final Exam</h2>
+        </div>
+        <div class="main">
+            <div>
+                
+                <button onclick="led_on()" id="button1" value="Open Curtain" >Measure Distance</button>                      <!-- Javascript 함수 지정 -->
+            </div>
+            
+        </div>
+        <div id="result" style="width: 500px; height: 200px; background-color: rgb(255, 255, 255);">
+            
+        </div>
+    </div>
+    <script>
+        function led_on(){
+            
+            fetch("/led/on")                                                /* 해당 경로 파일을 실행 */
+            .then(response=> response.text())
+            .then(data=> {
+            console.log(data);
+            let result = document.querySelector("#result");
+            document.getElementById('result').innerHTML=data+"CM"
+            
+            
+                
+        });
+        }
+    </script>
+</body>
+</html>
